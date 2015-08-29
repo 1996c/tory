@@ -1,2 +1,2 @@
 # tory
-tory tory, tory cis cracker.
+<i>tory tory, tory cis cracker.</i>
