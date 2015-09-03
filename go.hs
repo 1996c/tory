@@ -11,19 +11,23 @@ null' x = x
 
 --pembatas
 
-take' x = x
-  |
---pembatas
-
-drop' x = x
+take' n (x:xs)
+  | n == 0 = []
+  | x > 0 = [x] ++ take' (n-1) xs
 
 --pembatas
 
-fst' x = x
+drop' n (x:xs)
+  | n == 0 = (x:xs)
+  | n > 0 = drop' (n-1) xs
 
 --pembatas
 
-snd' x = x
+fst' (a,b) = a
+
+--pembatas
+
+snd' (a,b) = b
 
 --pembatas
 
@@ -83,7 +87,7 @@ notElem' x = x
 
 --pembatas
 
-head' x = x
+head' (x:xs) = x
 
 --pembatas
 
@@ -107,11 +111,15 @@ init' x = x
 
 --pembatas
 
-max' x = x
+max' a b
+  | a >= b = a
+  | otherwise = b
 
 --pembatas
 
-min' x = x
+min' a b
+  | a >= b = b
+  | otherwise = a
 
 --pembatas
 
