@@ -91,7 +91,9 @@ head' (x:xs) = x
 
 --pembatas
 
-length' x = x
+length' (x:xs)
+  | xs == [] = 1
+  | otherwise = 1 + length' xs
 
 --pembatas
 
