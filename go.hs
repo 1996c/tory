@@ -13,7 +13,8 @@ null' x = x
 
 take' n (x:xs)
   | n == 0 = []
-  | x > 0 = [x] ++ take' (n-1) xs
+  | n > 0 = [x] ++ take' (n-1) xs
+  | otherwise = []
 
 --pembatas
 
