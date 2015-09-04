@@ -19,8 +19,10 @@ take' n (x:xs)
 --pembatas
 
 drop' n (x:xs)
-  | n == 0 = (x:xs)
+  | n == 0 = x:xs
+  | xs == [] = []
   | n > 0 = drop' (n-1) xs
+  | otherwise = x:xs
 
 --pembatas
 
