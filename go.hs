@@ -152,7 +152,9 @@ zip3' x = x
 
 --pembatas
 
-sum' x = x
+sum' (x:xs)
+  | (x:xs) == [] = 0
+  | otherwise = x + (sum xs)
 
 --pembatas
 
