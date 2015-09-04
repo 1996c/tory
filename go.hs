@@ -198,7 +198,7 @@ any' x = x
 
 --pembatas
 
-insert' x = x
+insert' x xs = x:xs
 
 --pembatas
 
