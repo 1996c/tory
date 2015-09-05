@@ -114,11 +114,13 @@ reverse' x = x
 
 --pembatas
 
-last' x = x
+last' (x:xs)
+  | xs == [] = x
+  | otherwise = last' xs
 
 --pembatas
 
-tail' x = x
+tail' (x:xs) = xs
 
 --pembatas
 
