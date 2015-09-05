@@ -118,7 +118,8 @@ length' (x:xs)
 
 --pembatas
 
-reverse' x = x
+reverse' (x:xs) = reverse' xs ++ [x]
+reverse' [] = []
 
 --pembatas
 
