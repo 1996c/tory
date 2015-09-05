@@ -44,7 +44,7 @@ filter' x = x
 
 --pembatas
 
-delete n (x:xs)
+delete' n (x:xs)
   | x /= n = [x] ++ delete' n xs
   | x == n = [] ++ xs
 
