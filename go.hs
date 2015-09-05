@@ -36,9 +36,8 @@ snd' (a,b) = b
 
 --pembatas
 
-sesakNapas n = n * 2
-map' sesakNapas (x:xs) = [(sesakNapas x)] ++ map' sesakNapas xs
-map' sesakNapas [] = []
+map' z (x:xs) = [(z x)] ++ map' z xs
+map' z [] = []
 
 --pembatas
 
@@ -53,10 +52,9 @@ delete' n (x:xs)
 --pembatas
 
 deleteAll' n (x:xs)
-  | x == n = [] ++ deleteAll' n xs
+  | x == n = deleteAll' n xs
   | x /= n = [x] ++ deleteAll' n xs
 deleteAll' n [] = []
-
 --pembatas
 
 foldl' x = x
@@ -79,10 +77,6 @@ nth' (x:xs) n
   | n == 0 = x
   | otherwise = nth' xs (n-1)
 nth' :: [a] -> Int -> a
-
---pembatas
-
-sort' x = x
 
 --pembatas
 
@@ -163,11 +157,17 @@ intercalate' [n] (x:xs)
 
 --pembatas
 
-and' x = x
+and' [] = True
+and' (x:xs)
+  | x == False = False
+  | otherwise = and' (xs)
 
 --pembatas
 
-or' x = x
+or' [] = False
+or' (x:xs)
+  | x == True = True
+  | otherwise = or' (xs)
 
 --pembatas
 
@@ -236,7 +236,7 @@ nub' x = x
 
 --pembatas
 
-sort'' x = x
+sort' x = x
 
 --pembatas
 
