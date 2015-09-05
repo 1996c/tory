@@ -189,7 +189,7 @@ words' x = x
 
 --pembatas
 
-lines' x = x
+lines' abc = [abc]
 
 --pembatas
 
