@@ -36,7 +36,9 @@ snd' (a,b) = b
 
 --pembatas
 
-map' x = x
+sesakNapas n = n * 2
+map' sesakNapas (x:xs) = [(sesakNapas x)] ++ map' sesakNapas xs
+map' sesakNapas [] = []
 
 --pembatas
 
