@@ -157,7 +157,9 @@ intersperse' x = x
 
 --pembatas
 
-intercalate' x = x
+intercalate' [n] (x:xs)
+  | xs == [] = x
+  | otherwise = x ++ [n] ++ intercalate' [n] xs
 
 --pembatas
 
