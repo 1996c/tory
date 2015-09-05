@@ -193,7 +193,7 @@ lines' abc = [abc]
 
 --pembatas
 
-unlines' x = x
+unlines' [abc] = abc ++ "\n"
 
 --pembatas
 
