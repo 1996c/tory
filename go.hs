@@ -177,11 +177,12 @@ zip3' x = x
 
 sum' (x:xs)
   | (x:xs) == [] = 0
-  | otherwise = x + (sum xs)
+  | otherwise = x + (sum' xs)
 
 --pembatas
 
-product' x = x
+product' (x:xs) = x * (product' xs)
+product' [] = 1
 
 --pembatas
 
