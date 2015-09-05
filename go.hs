@@ -75,10 +75,7 @@ zipWith' x = x
 
 --pembatas
 
-nth' (x:xs) n
-  | n == 0 = x
-  | otherwise = nth' xs (n-1)
-nth' :: [a] -> Int -> a
+
 
 --pembatas
 
