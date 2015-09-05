@@ -84,7 +84,10 @@ scanl1' x = x
 
 --pembatas
 
-elem' x = x
+elem' n (x:xs)
+  | x /= n = elem' n xs
+  | x == n = True
+elem' n [] = False
 
 --pembatas
 
