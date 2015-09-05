@@ -50,7 +50,10 @@ delete' n (x:xs)
 
 --pembatas
 
-deleteAll' x = x
+deleteAll' n (x:xs)
+  | x == n = [] ++ deleteAll' n xs
+  | x /= n = [x] ++ deleteAll' n xs
+deleteAll' n [] = []
 
 --pembatas
 
