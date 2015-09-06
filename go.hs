@@ -194,7 +194,7 @@ lines' abc = [abc]
 
 --pembatas
 
-unlines' [abc] = abc ++ "\n"
+unlines' x = x
 
 --pembatas
 
@@ -240,11 +240,13 @@ sort' x = x
 
 --pembatas
 
-minimum' x = x
+minimum' [y] = y
+minimum' (x:xs) = min' (x) (minimum' xs)
 
 --pembatas
 
-maximum' x = x
+maximum' [y] = y
+maximum' (x:xs) = max' (x) (maximum' xs)
 
 --pembatas
 
