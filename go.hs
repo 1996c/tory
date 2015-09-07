@@ -7,8 +7,8 @@ import Data.List
 
 -- 1.a
 
-null' abc
-  | abc == [] = True
+null' n
+  | n == [] = True
   | otherwise = False
 
 --pembatas
@@ -36,12 +36,15 @@ snd' (a,b) = b
 
 --pembatas
 
-map' z (x:xs) = [(z x)] ++ map' z xs
 map' z [] = []
+map' z (x:xs) = [(z x)] ++ map' z xs
 
 --pembatas
 
-filter' x = x
+filter' f [] = []
+filter' f (x:xs)
+  | f x == True = [x] ++ filter' f xs
+  | f x == False = [] ++ filter' f xs
 
 --pembatas
 
@@ -127,7 +130,8 @@ tail' (x:xs) = xs
 
 --pembatas
 
-init' x = x
+init' [y] = []
+init' (x:xs) = x : init' xs
 
 --pembatas
 
@@ -175,14 +179,13 @@ zip3' x = x
 
 --pembatas
 
-sum' (x:xs)
-  | (x:xs) == [] = 0
-  | otherwise = x + (sum' xs)
+sum' [] = 0
+sum' (x:xs) = x + (sum' xs)
 
 --pembatas
 
-product' (x:xs) = x * (product' xs)
 product' [] = 1
+product' (x:xs) = x * (product' xs)
 
 --pembatas
 
@@ -190,7 +193,7 @@ words' x = x
 
 --pembatas
 
-lines' abc = [abc]
+lines' x = x
 
 --pembatas
 
@@ -222,7 +225,7 @@ any' x = x
 
 --pembatas
 
-insert' x xs = x:xs
+insert' x = x
 
 --pembatas
 
