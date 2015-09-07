@@ -261,7 +261,9 @@ maximum' (x:xs) = max' (x) (maximum' xs)
 
 --pembatas
 
-inits' x = x
+inits' (x:xs) = reverse' (hehe (x:xs))
+  where hehe [] = [[]]
+        hehe (x:xs) = [(x:xs)] ++ hehe xs
 
 --pembatas
 
