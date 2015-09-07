@@ -154,7 +154,9 @@ concat' x = x
 
 --pembatas
 
-intersperse' x = x
+intersperse' a (x:xs)
+  | xs == [] = [x]
+  | otherwise = [x] ++ [a] ++ intersperse' a xs
 
 --pembatas
 
