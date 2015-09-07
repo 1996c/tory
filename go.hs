@@ -178,7 +178,8 @@ or' (x:xs)
 
 --pembatas
 
-zip3' x = x
+zip3' [] [] [] = []
+zip3' (a:as) (b:bs) (c:cs) = [(a,b,c)] ++ zip3' as bs cs
 
 --pembatas
 
