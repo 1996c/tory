@@ -240,7 +240,10 @@ any' f (x:xs)
 
 --pembatas
 
-insert' x = x
+insert' a [] = [a]
+insert' a (x:xs)
+  | x >= a = (a:[x]) ++ xs
+  | otherwise = [x] ++ insert' a xs
 
 --pembatas
 
