@@ -74,7 +74,8 @@ zip' (a:as) (b:bs) = [(a,b)] ++ zip' as bs
 
 --pembatas
 
-zipWith' x = x
+zipWith' f [] [] = []
+zipWith' f (a:as) (b:bs) = [f a b] ++ zipWith' f as bs
 
 --pembatas
 
