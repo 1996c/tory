@@ -285,7 +285,7 @@ group' (x:xs) = [[x]] ++ group' xs
 
 --pembatas
 
-splitAt' x = x
+splitAt' n (x:xs) = [(take' n (x:xs))] ++ [(drop' n (x:xs))]
 
 --pembatas
 
@@ -294,7 +294,7 @@ partition' x = x
 --pembatas
 
 replicate' n x
-  | n > 0 = [x] ++ replicate (n - 1) x
+  | n > 0 = [x] ++ replicate' (n - 1) x
   | otherwise = []
 
 --pembatas
