@@ -280,7 +280,8 @@ intersect' x = x
 
 --pembatas
 
-group' x = x
+group' [] = []
+group' (x:xs) = [[x]] ++ group' xs
 
 --pembatas
 
