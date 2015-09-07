@@ -236,7 +236,8 @@ insert' x = x
 
 --pembatas
 
-zipWith3' x = x
+zipWith3' f [] [] [] = []
+zipWith3' f (a:as) (b:bs) (c:cs) = [f a b c] ++ zipWith3' f as bs cs
 
 --pembatas
 
