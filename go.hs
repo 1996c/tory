@@ -150,7 +150,8 @@ min' a b
 
 --pembatas
 
-concat' x = x
+concat' [] = []
+concat' (x:xs) = x ++ concat' xs
 
 --pembatas
 
