@@ -69,7 +69,8 @@ foldl1' x = x
 
 --pembatas
 
-zip' x = x
+zip' [] [] = []
+zip' (a:as) (b:bs) = [(a,b)] ++ zip' as bs
 
 --pembatas
 
