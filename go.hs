@@ -231,7 +231,10 @@ all' f (x:xs)
 
 --pembatas
 
-any' x = x
+any' f [] = False
+any' f (x:xs)
+  | f x == True = True
+  | otherwise = any' f (xs)
 
 --pembatas
 
