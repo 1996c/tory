@@ -293,7 +293,9 @@ partition' x = x
 
 --pembatas
 
-replicate' x = x
+replicate' n x
+  | n > 0 = [x] ++ replicate (n - 1) x
+  | otherwise = []
 
 --pembatas
 -- First Assignment
