@@ -209,8 +209,7 @@ unlines' (x:xs) = x ++ "\n" ++ (unlines' xs)
 
 --pembatas
 
-unwords' [] = []
-unwords' (x:xs) = x ++ (unwords' xs)
+unwords' x = x
 
 --pembatas
 
