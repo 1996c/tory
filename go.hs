@@ -204,7 +204,8 @@ lines' x = x
 
 --pembatas
 
-unlines' x = x
+unlines' [] = []
+unlines' (x:xs) = x ++ "\n" ++ (unlines' xs)
 
 --pembatas
 
