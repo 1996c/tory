@@ -69,12 +69,14 @@ foldl1' x = x
 
 --pembatas
 
-zip' [] [] = []
+zip' _ [] = []
+zip' [] _ = []
 zip' (a:as) (b:bs) = [(a,b)] ++ zip' as bs
 
 --pembatas
 
-zipWith' f [] [] = []
+zipWith' f [] _ = []
+zipWith' f _ [] = []
 zipWith' f (a:as) (b:bs) = [f a b] ++ zipWith' f as bs
 
 --pembatas
@@ -181,7 +183,9 @@ or' (x:xs)
 
 --pembatas
 
-zip3' [] [] [] = []
+zip3' [] _ _ = []
+zip3' _ [] _ = []
+zip3' _ _ [] = []
 zip3' (a:as) (b:bs) (c:cs) = [(a,b,c)] ++ zip3' as bs cs
 
 --pembatas
@@ -250,7 +254,9 @@ insert' a (x:xs)
 
 --pembatas
 
-zipWith3' f [] [] [] = []
+zipWith3' f [] _ _ = []
+zipWith3' f _ [] _ = []
+zipWith3' f _ _ [] = []
 zipWith3' f (a:as) (b:bs) (c:cs) = [f a b c] ++ zipWith3' f as bs cs
 
 --pembatas
