@@ -309,7 +309,11 @@ splitAt' n (x:xs) = [(take' n (x:xs))] ++ [(drop' n (x:xs))]
 
 --pembatas
 
-partition' x = x
+partition' f (x:xs) = (filter' f (x:xs),sasisu f (x:xs))
+  where sasisu f [] = []
+        sasisu f (x:xs)
+          | f x == False = [x] ++ sasisu f xs
+          | otherwise = sasisu f xs
 
 --pembatas
 
