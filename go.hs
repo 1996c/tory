@@ -200,14 +200,6 @@ product' (x:xs) = x * (product' xs)
 
 --pembatas
 
-words' x = x
-
---pembatas
-
-lines' x = x
-
---pembatas
-
 unlines' [] = []
 unlines' (x:xs) = x ++ "\n" ++ (unlines' xs)
 
@@ -272,6 +264,14 @@ nub' x = x
 --pembatas
 
 sort' x = x
+
+--pembatas
+
+words' x = x
+
+--pembatas
+
+lines' x = x
 
 --pembatas
 
