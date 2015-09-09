@@ -232,7 +232,8 @@ dropWhile' f (x:xs)
 
 --pembatas
 
-concatMap' x = x
+concatMap' f [] = []
+concatMap' f (x:xs) = f x ++ concatMap' f xs
 
 --pembatas
 
