@@ -88,7 +88,8 @@ nth' :: [a] -> Int -> a
 
 --pembatas
 
-scanl' x = x
+scanl' f n [] = [n]
+scanl' f n (x:xs) = [n] ++ scanl' f (f n x) xs
 
 --pembatas
 
