@@ -84,7 +84,6 @@ zipWith' f (a:as) (b:bs) = [f a b] ++ zipWith' f as bs
 nth' (x:xs) n
   | n == 0 = x
   | otherwise = nth' xs (n-1)
-nth' :: [a] -> Int -> a
 
 --pembatas
 
@@ -260,11 +259,15 @@ zipWith3' f (a:as) (b:bs) (c:cs) = [f a b c] ++ zipWith3' f as bs cs
 
 -- 1.b
 
-nub' x = x
+nub' [] = []
+nub' (x:xs) = [x] ++ nub' (deleteAll' x (xs))
 
 --pembatas
 
-sort' x = x
+sort' [] = []
+sort' (x:xs) = [zazan (x:xs)] ++ sort' (delete' (zazan (x:xs)) (x:xs))
+  where zazan [z] = z
+        zazan (x:xs) = min' (x) (zazan xs)
 
 --pembatas
 
