@@ -94,7 +94,9 @@ scanl' f n (x:xs) = [n] ++ scanl' f (f n x) xs
 
 scanl1' f (x:xs) = [x] ++ muter f (x:xs)
   where muter f [y] = []
-        muter f (x:xs) = [f x (head xs)] ++ muter f (f x (head xs):(tail xs))
+        muter f (x:xs) = [f x (pala xs)] ++ muter f (f x (pala xs):(ekor xs))
+          where pala (x:xs) = x
+                ekor (x:xs) = xs
 
 --pembatas
 
