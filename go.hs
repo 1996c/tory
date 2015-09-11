@@ -16,7 +16,7 @@ null' n
 take' n (x:xs)
   | n == 0 = []
   | n > 0 = [x] ++ take' (n-1) xs
-  | otherwise = []
+take' _ [] = []
 
 --pembatas
 
@@ -87,8 +87,8 @@ nth' (x:xs) n
 
 --pembatas
 
-scanl' f n [] = [n]
-scanl' f n (x:xs) = [n] ++ scanl' f (f n x) xs
+-- scanl' f n [] = [n]
+-- scanl' f n (x:xs) = [n] ++ scanl' f (f n x) xs
 
 --pembatas
 
@@ -114,6 +114,7 @@ head' (x:xs) = x
 
 --pembatas
 
+length' [] = 0
 length' (x:xs)
   | xs == [] = 1
   | otherwise = 1 + length' xs
@@ -163,9 +164,8 @@ intersperse' a (x:xs)
 
 --pembatas
 
-intercalate' [n] (x:xs)
-  | xs == [] = x
-  | otherwise = x ++ [n] ++ intercalate' [n] xs
+intercalate' n (x:[]) = x
+intercalate' n (x:xs) = x ++ n ++ intercalate' n xs
 
 --pembatas
 
@@ -206,14 +206,14 @@ unlines' (x:xs) = x ++ "\n" ++ (unlines' xs)
 --pembatas
 
 unwords' (x:[]) = x
-unwords' (x:xs) = x ++ [' '] ++ (unwords' xs)
+unwords' (x:xs) = x ++ " " ++ (unwords' xs)
 
 --pembatas
 
 takeWhile' f [] = []
 takeWhile' f (x:xs)
-  | f x == True = [x]
-  | otherwise = takeWhile' f xs
+  | f x == True = [x] ++ takeWhile f xs
+  | otherwise = takeWhile' f []
 
 --pembatas
 
@@ -300,11 +300,21 @@ tails' (x:xs) = [(x:xs)] ++ tails' xs
 
 --pembatas
 
-union' x = x
+union' x y = f (x ++ y)
+  where f [] = []
+        f (x:xs) = [x] ++ f (deleteAll' x (xs))
 
 --pembatas
 
-intersect' x = x
+intersect' [] _ = []
+intersect' _ [] = []
+intersect' (x:xs) (y:ys)
+  | x == putar x (y:ys) = [x] ++ intersect' xs (y:ys)
+  | otherwise = intersect' xs (y:ys)
+    where putar _ [] = 0
+          putar x (y:ys)
+            | x == y = x
+            | x /= y = putar x ys
 
 --pembatas
 
