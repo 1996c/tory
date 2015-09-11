@@ -61,7 +61,8 @@ deleteAll' n [] = []
 
 --pembatas
 
-foldl' x = x
+foldl' f n [] = n
+foldl' f n (x:xs) = foldl' f (f n x) xs
 
 --pembatas
 
