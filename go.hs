@@ -66,7 +66,8 @@ foldl' f n (x:xs) = foldl' f (f n x) xs
 
 --pembatas
 
-foldl1' x = x
+foldl' f [x] = [x]
+foldl' f (x:xs) = foldl' f (f x (head xs):(tail xs))
 
 --pembatas
 
