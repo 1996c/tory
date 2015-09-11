@@ -170,7 +170,7 @@ intersperse' a (x:xs)
 
 --pembatas
 
-intercalate' n (x:[]) = x
+intercalate' n [y] = y
 intercalate' n (x:xs) = x ++ n ++ intercalate' n xs
 
 --pembatas
