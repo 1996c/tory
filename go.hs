@@ -212,7 +212,7 @@ unwords' (x:xs) = x ++ " " ++ (unwords' xs)
 
 takeWhile' f [] = []
 takeWhile' f (x:xs)
-  | f x == True = [x] ++ takeWhile f xs
+  | f x == True = [x] ++ takeWhile' f xs
   | otherwise = takeWhile' f []
 
 --pembatas
@@ -289,9 +289,9 @@ maximum' (x:xs) = max' (x) (maximum' xs)
 
 --pembatas
 
-inits' (x:xs) = reverse' (hehe (x:xs))
+inits' (x:xs) = hehe (reverse (x:xs))
   where hehe [] = [[]]
-        hehe (x:xs) = [(x:xs)] ++ hehe xs
+        hehe (x:xs) = hehe xs ++ [reverse (x:xs)]
 
 --pembatas
 
