@@ -92,7 +92,9 @@ nth' (x:xs) n
 
 --pembatas
 
-scanl1' x = x
+scanl1' f (x:xs) = [x] ++ muter f (x:xs)
+  where muter f [y] = []
+        muter f (x:xs) = [f x (head xs)] ++ muter f (f x (head xs):(tail xs))
 
 --pembatas
 
