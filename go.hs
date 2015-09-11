@@ -87,8 +87,8 @@ nth' (x:xs) n
 
 --pembatas
 
--- scanl' f n [] = [n]
--- scanl' f n (x:xs) = [n] ++ scanl' f (f n x) xs
+scanl' f n [] = [n]
+scanl' f n (x:xs) = [n] ++ scanl' f (f n x) xs
 
 --pembatas
 
