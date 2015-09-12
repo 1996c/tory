@@ -278,11 +278,25 @@ sort' (x:xs) = [zazan (x:xs)] ++ sort' (delete' (zazan (x:xs)) (x:xs))
 
 --pembatas
 
-words' x = x
+words' [] = []
+words' (x:xs)
+  | x == ' ' = words' xs
+  | x == '\n' = words' xs
+  | otherwise = [takeWhile' susur (x:xs)] ++ words' (dropWhile susur (x:xs))
+  where susur y
+          | y == ' ' = False
+          | y == '\n' = False
+          | otherwise = True
 
 --pembatas
 
-lines' x = x
+lines' [] = []
+lines' (x:xs)
+  | x == '\n' = lines' xs
+  | otherwise = [takeWhile' susur (x:xs)] ++ lines' (dropWhile susur (x:xs))
+  where susur y
+          | y == '\n' = False
+          | otherwise = True
 
 --pembatas
 
@@ -325,8 +339,7 @@ intersect' (x:xs) (y:ys)
 
 --pembatas
 
-group' [] = []
-group' (x:xs) = [[x]] ++ group' xs
+group' x = x
 
 --pembatas
 
