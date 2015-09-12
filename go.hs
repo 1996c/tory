@@ -219,13 +219,13 @@ unwords' (x:xs) = x ++ " " ++ (unwords' xs)
 takeWhile' f [] = []
 takeWhile' f (x:xs)
   | f x == True = [x] ++ takeWhile' f xs
-  | otherwise = takeWhile' f []
+  | otherwise = []
 
 --pembatas
 
-dropWhile' _ [] = []
+dropWhile' f [] = []
 dropWhile' f (x:xs)
-  | f x == True = xs
+  | f x == False = (x:xs)
   | otherwise = dropWhile' f xs
 
 --pembatas
