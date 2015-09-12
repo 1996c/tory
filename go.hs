@@ -48,16 +48,17 @@ filter' f (x:xs)
 
 --pembatas
 
+delete' n [] = []
 delete' n (x:xs)
-  | x /= n = [x] ++ delete' n xs
   | x == n = [] ++ xs
+  | x /= n = [x] ++ delete' n xs
 
 --pembatas
 
+deleteAll' n [] = []
 deleteAll' n (x:xs)
   | x == n = deleteAll' n xs
   | x /= n = [x] ++ deleteAll' n xs
-deleteAll' n [] = []
 
 --pembatas
 
