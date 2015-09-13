@@ -113,6 +113,7 @@ sum' (x:xs)
 -- delete 5 [5]         = [] ++ delete 5 [] []
 -- delete 5 []          = [] ++ delete 5 []
 
+delete' n [] = []
 delete' n (x:xs)
   | x /= n = [x] ++ delete' n xs
   | x == n = [] ++ xs
@@ -126,7 +127,7 @@ delete' n (x:xs)
 nth' (x:xs) n
   | n == 0 = x
   | otherwise = nth' xs (n-1)
-nth' :: [a] -> Int -> a
+
 
 null' abc
   | abc == [] = True
@@ -218,9 +219,9 @@ cihuy = [['c'],['i'],['h'],['u'],['y']]
 -- i' [n] [[x]] = [x]
 
 
-intercalate' [n] (x:xs)
-  | xs == [] = x
-  | otherwise = x ++ [n] ++ intercalate' [n] xs
+-- intercalate' [n] (x:xs)
+--   | xs == [] = x
+--   | otherwise = x ++ [n] ++ intercalate' [n] xs
 
 
 -- words' (x:xs)
@@ -362,7 +363,9 @@ zipWith' f (a:as) (b:bs) = [f a b] ++ zipWith' f as bs
 -- scanl' yoyo 5 [5,5,5] = [5,25,125,625]
 -- scanl' f a (x:xs)
 
-zip3' [] [] [] = []
+zip3' [] _ _ = []
+zip3' _ [] _ = []
+zip3' _ _ [] = []
 zip3' (a:as) (b:bs) (c:cs) = [(a,b,c)] ++ zip3' as bs cs
 
 -- takeWhile' f [] = []
@@ -376,8 +379,8 @@ coba a
 
 takeWhile' f [] = []
 takeWhile' f (x:xs)
-  | f x == True = [x]
-  | otherwise = takeWhile' f xs
+  | f x == True = [x] ++ takeWhile' f xs
+  | otherwise = []
 
 coba2 a
   | a == 3 = True
@@ -398,13 +401,12 @@ tails' [] = [[]]
 tails' (x:xs) = [(x:xs)] ++ tails' xs
 
 
-inits' (x:xs) = reverse' (hehe (x:xs))
-  where hehe [] = [[]]
-        hehe (x:xs) = [(x:xs)] ++ hehe xs
 
 -- group' [1,2,3,4]
-group' [] = []
-group' (x:xs) = [[x]] ++ group' xs
+-- group' [] = []
+-- group' (x:xs) = [[x]] ++ group' xs
+
+
 
 replicate' n x
   | n > 0 = [x] ++ replicate' (n - 1) x
@@ -419,7 +421,7 @@ replicate' n x
 --   | n > 0 = [x] ++ splitAt' (n - 1) xs
 --   | otherwise = [(x:xs)]
 
-splitAt' n (x:xs) = [(take' n (x:xs))] ++ [(drop' n (x:xs))]
+splitAt' n (x:xs) = ((take' n (x:xs)),(drop' n (x:xs)))
 
 boolz = [[],[True],[],[False],[True]]
 
@@ -452,9 +454,14 @@ any' f (x:xs)
   | f x == True = True
   | otherwise = any' f (xs)
 
-intersperse' a (x:xs)
-  | xs == [] = [x]
-  | otherwise = [x] ++ [a] ++ intersperse' a xs
+intersperse' a [x] = [x]
+intersperse' a (x:xs) = [x] ++ [a] ++ intersperse' a xs
+
+-- intersperse' 0 [1,2,3,4,5] = [1] ++ [0] ++ intersperse' 0 [2,3,4,5]
+-- intersperse' 0 [2,3,4,5] = [2] ++ [0] ++ intersperse' 0 [3,4,5]
+-- intersperse' 0 [3,4,5] = [3] ++ [0] ++ intersperse' 0 [4,5]
+-- intersperse' 0 [4,5] = [4] ++ [0] ++ intersperse' 0 [5]
+-- intersperse' 0 [5] = [5]
 
 hoho = [[1],[2],[3],[4],[5],[6],[7],[8],[9],[10]]
 
@@ -505,10 +512,7 @@ unwords' (x:xs) = x ++ [' '] ++ (unwords' xs)
 --   | (x:y) == ("\n") = lines' xs
 --   | otherwise = [x] ++ [y] ++ lines' xs
 
--- words' [] = []
--- words' (x:xs)
---   | x == ' ' = words' xs
---   | otherwise = [[x] ++ (words' xs)]
+
 
 -- union' (x:xs) (y:ys)
 --   |
@@ -553,10 +557,6 @@ partition' f (x:xs) = (filter' f (x:xs),sasisu f (x:xs))
 --   | n > 0 = drop' (n-1) xs
 --   | otherwise = x:xs
 
-dropWhile' _ [] = []
-dropWhile' f (x:xs)
-  | f x == True = xs
-  | otherwise = dropWhile' f xs
 
 -- nub' [] = []
 -- nub' (x:xs) = [x] ++ deleteAll' x xs ++ nub' xs
@@ -623,6 +623,317 @@ fungsi a = [a*a]
 concatMap' f [] = []
 concatMap' f (x:xs) = f x ++ concatMap' f xs
 
+-- intersect' [] [] = []
+-- intersect' (x:xs) (y:ys)
+--   | x == y = [x] ++ intersect' (x:xs) ys ++ intersect' xs (y:ys)
+--   | otherwise = intersect' (x:xs) ys ++ intersect' xs (y:ys)
+
+-- intersect' [] [] = []
+-- intersect' (x:xs) (y:ys)
+--   | x == y = [x] ++ intersect' xs ys
+--   | otherwise = intersect' xs ys
+--
+-- intersect' (x:xs) (y:ys)
+--   | x == y = [x] ++ intersect' xs (y:ys)
+--   | otherwise = intersect xs (y:ys)
+-- intersect' [] (y:ys) = doni (x:xs) (y:ys)
+--   where doni (x:xy) (y:ys)
+--     | x == y = [y] ++ doni (x:xs) ys
+--     | otherwise = doni (x:xs) ys
+-- intersect' (x:xs) [] = []
+--
+-- intersect' [] [] = []
+-- intersect' (x:xs) (y:ys)
+--   | x == y = [x] ++ intersect' xs (y:ys) ++ intersect' (x:xs) ys
+--   | otherwise = intersect xs (y:ys) + intersect' xs (y:ys)
+
+scanls' f n [] = [n]
+scanls' f n (x:xs) = [n] ++ scanls' f (f n x) xs
+
+-- scanl1' f [z] = [z]
+-- scanl1' f (x:y:xs) = [x] ++ scanl1' f [(f x y):xs]
+
+-- scanl1' (+) [1,2,3,4] = [1] ++ scanl1' (+) 3:[3,4]
+-- scanl1' (+) [3,3,4] = [3] ++ scanl' (+) 6:[4]
+-- scanl1' (+) [6,4] = [6] ++ scanl' (+) 10:[]
+-- scanl1' (+) [10] = [10]
+
+-- words' [] = []
+-- words' (x:xs)
+--   | (x == ' ') || (x == '\n') = words' xs
+--   | otherwise = x ++ (words' xs)
+
+-- maximum' [y] = y
+-- maximum' (x:xs) = max' (x) (maximum' xs)
+--
+-- minimum' [y] = y
+-- minimum' (x:xs) = min' (x) (minimum' xs)
+
+sort' [] = []
+sort' (x:xs) = [zazan (x:xs)] ++ sort' (delete' (zazan (x:xs)) (x:xs))
+  where zazan [z] = z
+        zazan (x:xs) = min' (x) (zazan xs)
+
+nub' [] = []
+nub' (x:xs) = [x] ++ nub' (deleteAll' x (xs))
+
+-- group' [] = []
+-- group' (x:xs) = takeWhile' (x==) (x:xs) ++ group' (deleteAll' x xs)
+
+sasiso i = i + 3
+
+
+-- words' [] = []
+-- words' (x:xs) = [takeWhile' ssss (x:xs)] ++ [takeWhile' ssss xs]
+--   where ssss (x:xs)
+--           | x == '\n' = False
+--           | x == ' ' = False
+--           | otherwise = True
+
+-- intersect = digabung terus disort, yg sama diambil terus digabung
+
+-- sort' [] = []
+-- sort' (x:xs) = [zazan (x:xs)] ++ sort' (delete' (zazan (x:xs)) (x:xs))
+--   where zazan [z] = z
+--         zazan (x:xs) = min' (x) (zazan xs)
+
+-- intersect' (x:xs) (y:ys) = f1 (f2 (x:xs) (y:ys))
+--   where f1 (z:[]) = []
+--         f1 (z:zs)
+--           | z == (head zs) = [z] ++ f1 zs
+--           | otherwise = f1 zs
+--         f2 (x:xs) (y:ys) = c ((x:xs) ++ (y:ys))
+--           where c [] = []
+--                 c (x:xs) = [d (x:xs)] ++ c (delete' (d (x:xs)) (x:xs))
+--                   where d [z] = z
+--                         d (x:xs) = min' (x) (d xs)
+
+
+intersect' [] _ = []
+intersect' _ [] = []
+intersect' (x:xs) (y:ys)
+  | x == putar x (y:ys) = [x] ++ intersect' xs (y:ys)
+  | otherwise = intersect xs (y:ys)
+    where putar _ [] = 0
+          putar x (y:ys)
+            | x == y = x
+            | x /= y = putar x ys
+
+-- yaya [1,1,2,3,4,4,5] = [1] ++ yaya zs
+-- yaya [1,2,3,4,4,5] = yaya zs
+-- yaya [2,3,4,4,5] = yaya zs
+-- yaya [3,4,4,5] = yaya zs
+-- yaya [4,4,5] = [4] + yaya zs
+-- yaya [4,5] = yaya zs
+-- yaya [5] = yaya zs
+-- yaya [] = []
+
+-- nub' [] = []
+-- nub' (x:xs) = [x] ++ nub' (deleteAll' x (xs))
+
+union' x y = f (x ++ y)
+  where f [] = []
+        f (x:xs) = [x] ++ f (deleteAll' x (xs))
+
+benar n
+  | (n /= '\n') || (n == ' ') = False
+  | otherwise = True
+
+--   drop' n (x:xs)
+--     | n == 0 = x:xs
+--     | xs == [] = []
+--     | n > 0 = drop' (n-1) xs
+--     | otherwise = x:xs
+--
+-- initss (x:xs) = [[]] ++ [[x]] ++ [x:head xs]
+
+-- initss [] = []
+-- initss (x:xs) = [init ([init ([init (x:xs)])])] ++ [(x:xs)]
+
+-- inits [1,2,3,4] = [[],[1],[1,2],[1,2,3],[1,2,3,4]]
+--                   [] ++ [x] ++ [x ++ (head xs)]
+
+-- [1,2,3,4] = (x:xs)
+-- [1,2,3] = init [1,2,3,4]
+-- [1,2] = init [1,2,3]
+-- [1] = init [1,2]
+-- [] = init [1]
+--
+-- init [1] ++ init [1,2] ++ init (init (x:xs)) ++ init (x:xs)
+
+-- inits' (x:xs) = reverse (hajar (x:xs)) ++ (x:xs)
+--   where hajar [] = []
+--         hajar (x:xs) = init (init (x:xs))
+
+inits' (x:xs) = hehe (reverse (x:xs))
+  where hehe [] = [[]]
+        hehe (x:xs) = hehe xs ++ [reverse (x:xs)]
+
+-- group (x:xs)
+
+-- scanl1' f [] = []
+-- scanl1' f (x:xs) = [x] ++ f (f x (head xs)) xs
+
+scanl1' f (x:xs) = [x] ++ muter f (x:xs)
+  where muter f [y] = []
+        muter f (x:xs) = [f x (pala xs)] ++ muter f (f x (pala xs):(ekor xs))
+          where pala (x:xs) = x
+                ekor (x:xs) = xs
+
+-- scanl1 (+) [1,2,3,4] = [1] ++ muter (+) [1,2,3,4]
+-- muter (+) [1,2,3,4] = [3] ++ muter [3,3,4]
+-- muter (+) [3,3,4] = [6] ++ muter [6,4]
+-- muter (+) [6,4] = [10] ++ muter [10]
+
+-- muter f [y] = []
+-- muter f (x:xs) = [f x (head xs)] ++ muter f (f x (head xs):(tail xs))
+
+-- iterate' f x = [x] ++ hajar f x
+--   where hajar f x = (f x) ++ (f (hajar f x))
+
+-- iterate' pred 5 = [5,4,3,2,1,0]
+-- 5 = x
+-- 4 = pred 5
+-- 3 = pred 4
+-- 2 = pred 3
+-- 1 = pred 2
+-- 0 = pred 1
+
+foldls' f n [] = n
+foldls' f n (x:xs) = foldls' f (f n x) xs
+
+-- foldl (*) 2 [1,2,3,4] = (*) 2 1
+-- foldl (*) (2) [2,3,4] = (*) 2 2
+-- foldl (*) (4) [3,4] = (*) 4 3
+-- foldl (*) (12) [4] = (*) 12 4
+-- foldl (*) 48
+
+foldle' f [x] = x
+foldle' f (x:xs) = foldle' f (f x (head xs):(tail xs))
+
+-- foldl1' (+) [1,2,3,4,5] = 3
+-- foldl1' (+) (f 1 2)[3,4,5] = 6
+-- foldl1' (+) [6,4,5] = 10
+-- foldl1' (+) [10,5] = 15
+-- foldl1' (+) [15] = []
+
+kechap a b c = a * b + c
+
+
+
+-- group' (x:xs)
+--   | x == (head xs) = takeWhile (x == head xs) (x:xs) ++ dropWhile (x == head xs ) ++ group' (tail xs)
+--   | otherwise = [x] ++ group xs
+
+-- itung pake length ada berapa banyak
+-- terus jadiin n di replicate
+-- terus gabungin
+
+-- takeWhile == 1 dan ulang
+-- sisanya gabungin dan ulang
+
+
+-- iterate' f n = (f n):(iterate' f (f n))
+
+intercalate' n [y] = y
+intercalate' n (x:xs) = x ++ n ++ intercalate' n xs
+
+-- words' [] = []
+-- words' (x:xs)
+--   | (x == ' ') || (x == '\n') = [x] ++ words' xs
+--   | otherwise = [x] ++ words' xs
+
+tidakSpasi x
+  | x == '\n' = False
+  | x == ' ' = False
+  | otherwise = True
+
+dropWhile' f [] = []
+dropWhile' f (x:xs)
+  | f x == False = (x:xs)
+  | otherwise = dropWhile' f xs
+
+
+-- words' [] = []
+-- words' (x:xs)
+--   | x == ' ' = [takeWhile' cex (x:xs)] ++ words' (delete ' ' (dropWhile' cex (x:xs)))
+--   | x == '\n' = [takeWhile' cex (x:xs)] ++ words' (delete '\n' (dropWhile' cex (x:xs)))
+--   | otherwise = [takeWhile' cex (x:xs)] ++ words' (dropWhile cex (x:xs))
+--   where cex a
+--           | a == ' ' = False
+--           | a == '\n' = False
+--           | otherwise = True
+
+-- words' "siapa yang pergi?" = ["siapa"] ++ words' "yang pergi?"
+-- words' "yang pergi?" = ["yang"] ++ words'
+
+lines' [] = []
+lines' (x:xs)
+  | x == '\n' = lines' xs
+  | otherwise = [takeWhile' susur (x:xs)] ++ lines' (dropWhile susur (x:xs))
+  where susur y
+          | y == '\n' = False
+          | otherwise = True
+
+words' [] = []
+words' (x:xs)
+  | x == ' ' = words' xs
+  | x == '\n' = words' xs
+  | otherwise = [takeWhile' susur (x:xs)] ++ words' (dropWhile susur (x:xs))
+  where susur y
+          | y == ' ' = False
+          | y == '\n' = False
+          | otherwise = True
+
+-- group' [] = []
+-- group' (x:xs) = [takeWhile' susur (x:xs)] ++ group' (dropWhile susur (x:xs))
+--   where susur (x:xs)
+--           | x == x = False
+--           | otherwise = True
+
+-- group' [] = []
+-- group' (x:xs)
+--   | x == (head xs) = [[x ++ (head xs)]] ++ group' xs
+--   | otherwise = [[x]] ++ group' xs
+
+susurDua (x:xs)
+  | x == (head xs) = False
+  | otherwise = True
+
+-- group' [1,1,1,3,4] = [takeWhile' susur (x:xs)] ++ group' (dropWhile' susur (x:xs))
+-- group
+
+jumlahBil n [] = 0
+jumlahBil n (x:xs)
+  | n == x = 1 + jumlahBil n xs
+  | otherwise = jumlahBil n xs
+
+jumlahBil1 n [] = 0
+jumlahBil1 n (x:xs)
+  | n == x = 1 + jumlahBil1 n xs
+  | otherwise = 0
+
+hapusSejumlah _ [] = []
+hapusSejumlah n (x:xs)
+  | n > 0 = hapusSejumlah (n -1) xs
+  | n <= 0 = (x:xs)
+
+group' [] = []
+group' (x:xs) = [salin (jmlBil1 x (x:xs)) x] ++ group' (hapusSejumlah (jmlBil1 x (x:xs)) (x:xs))
+  where salin n x
+          | n > 0 = [x] ++ salin (n - 1) x
+          | otherwise = []
+        jmlBil1 n [] = 0
+        jmlBil1 n (x:xs)
+          | n == x = 1 + jmlBil1 n xs
+          | otherwise = 0
+        hapusSejumlah _ [] = []
+        hapusSejumlah n (x:xs)
+          | n > 0 = hapusSejumlah (n -1 ) xs
+          | n <= 0 = (x:xs)
+
+iterate' f x = [x] ++ hajar f x
+  where hajar f x = [f x] ++ hajar f (f x)
 
 
 
@@ -671,4 +982,98 @@ concatMap' f (x:xs) = f x ++ concatMap' f xs
 
 
 
-  -- pembatas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- ea
