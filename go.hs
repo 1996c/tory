@@ -339,7 +339,16 @@ intersect' (x:xs) (y:ys)
 
 --pembatas
 
-group' x = x
+group' [] = []
+group' (x:xs) = [replicate (jmlBil1 x (x:xs)) x] ++ group' (hapusSejumlah (jmlBil1 x (x:xs)) (x:xs))
+  where jmlBil1 n [] = 0
+        jmlBil1 n (x:xs)
+          | n == x = 1 + jmlBil1 n xs
+          | otherwise = 0
+        hapusSejumlah _ [] = []
+        hapusSejumlah n (x:xs)
+          | n > 0 = hapusSejumlah (n -1 ) xs
+          | n <= 0 = (x:xs)
 
 --pembatas
 
