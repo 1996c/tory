@@ -264,6 +264,11 @@ zipWith3' f (a:as) (b:bs) (c:cs) = [f a b c] ++ zipWith3' f as bs cs
 
 --pembatas
 
+iterate' f x = [x] ++ hajar f x
+  where hajar f x = [f x] ++ hajar f (f x)
+
+--pembatas
+
 -- 1.b
 
 nub' [] = []
