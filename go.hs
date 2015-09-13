@@ -360,7 +360,7 @@ group' (x:xs) = [salin (jmlBil1 x (x:xs)) x] ++ group' (hapusSejumlah (jmlBil1 x
 
 --pembatas
 
-splitAt' n (x:xs) = [(take' n (x:xs))] ++ [(drop' n (x:xs))]
+splitAt' n (x:xs) = ((take' n (x:xs))],[(drop' n (x:xs)))
 
 --pembatas
 
